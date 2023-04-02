@@ -9,7 +9,7 @@
       "node_modules/": true
     },
     "editor": {
-      "wordWrapColumn" : 160
+      "wordWrapColumn" : 180
     }
   }
 }

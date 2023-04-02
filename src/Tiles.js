@@ -23,7 +23,7 @@ const Tiles = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       doAnimation();
-    }, 500);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -75,20 +75,24 @@ const Tiles = () => {
         from: index,
       }),
     });
-    
   };
+
+  const radius = 5;
+  const animeTiming = 30;
 
   const doAnimation = () => {
     toggle();
     console.log(columns, rows);
-    let randX = (Math.round(Math.random() * 10 - 5) + Math.round(columns / 2)) + 1;
-    let randY = Math.round(Math.random() * 10 - 5) + Math.round(rows / 2) * (Math.round(columns / 2));
-    let randCenter = randY;
+    const randX = Math.round(
+      Math.random() * (radius * 2) - radius + columns / 2
+    );
+    const randY = Math.round(Math.random() * (radius * 2) - radius + rows / 2);
+    const randCenter = columns * randY + randX;
 
     anime({
       targets: ".tile",
       opacity: toggled ? 0 : 1,
-      delay: anime.stagger(18, {
+      delay: anime.stagger(animeTiming, {
         grid: [columns, rows],
         from: randCenter,
       }),
@@ -99,7 +103,7 @@ const Tiles = () => {
     <div className="tiles">
       <div ref={tilesRef} id="tiles"></div>
       <div className="centered" id="title">
-        <div className="fancy">👋🏼 Wai</div>
+        {/* <div className="fancy">👋🏼 Wai</div> */}
       </div>
     </div>
   );
