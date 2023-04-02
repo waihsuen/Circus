@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
 import "./Tiles.css";
 
@@ -9,16 +9,35 @@ const Tiles = () => {
 
   const tilesRef = useRef(null);
   let wrapper = tilesRef.current;
+  // const [windowSize, setWindowSize] = useState([0, 0]);
+  // const updateWindowSize = () => {
+  //   // setWindowSize([window.innerWidth, window.innerHeight]);
+  //    createGrid();
+  // };
   //   const wrapper = document.getElementById("tiles");
   useEffect(() => {
     wrapper = tilesRef.current;
     createGrid();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      doAnimation();
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // useLayoutEffect(() => {
+  //   window.addEventListener("resize", updateWindowSize);
+  //   // updateWindowSize();
+  //   return () => window.removeEventListener("resize", updateWindowSize);
+  // }, []);
+
+  window.onresize = () => createGrid();
+
   const toggle = () => {
     toggled = !toggled;
-
-    document.body.classList.toggle("toggled");
+    // document.body.classList.toggle("toggled");
   };
 
   const createTile = (index) => {
@@ -56,9 +75,25 @@ const Tiles = () => {
         from: index,
       }),
     });
+    
   };
 
-  window.onresize = () => createGrid();
+  const doAnimation = () => {
+    toggle();
+    console.log(columns, rows);
+    let randX = (Math.round(Math.random() * 10 - 5) + Math.round(columns / 2)) + 1;
+    let randY = Math.round(Math.random() * 10 - 5) + Math.round(rows / 2) * (Math.round(columns / 2));
+    let randCenter = randY;
+
+    anime({
+      targets: ".tile",
+      opacity: toggled ? 0 : 1,
+      delay: anime.stagger(18, {
+        grid: [columns, rows],
+        from: randCenter,
+      }),
+    });
+  };
 
   return (
     <div className="tiles">
