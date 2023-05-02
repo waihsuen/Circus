@@ -1,101 +1,102 @@
 :root {
-    --g1: rgb(174, 0, 255);
-    --g2: rgb(0, 69, 243);
+  --g1: rgb(174, 0, 255);
+  --g2: rgb(0, 69, 243);
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
   }
-  
-  @keyframes background-pan {
-    from {
-      background-position: 0% center;
-    }
-    
-    to {
-      background-position: -200% center;
-    }
+
+  to {
+    background-position: -200% center;
   }
-  
-  body {
-    animation: background-pan 10s linear infinite;
-    background: linear-gradient(
+}
+
+body {
+  /* animation: background-pan 10s linear infinite; */
+  /* background: linear-gradient(
       to right,
       var(--g1),
       var(--g2),
       var(--g1)
-    );
-    background-size: 200%;
-    height: 100vh;
-    overflow: hidden;
-    margin: 0px;
-  }
-  
-  body.toggled {
-    animation: none;
-  }
-  
-  body.toggled #title {
-    opacity: 1;
-  }
-  
-  .centered {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  #tiles {
-    height: calc(100vh - 1px);
-    width: calc(100vw - 1px);
-    position: relative;
-    z-index: 2;
-    
-    display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: repeat(var(--rows), 1fr);
-  }
-  
-  .tile {
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .tile:hover:before {
-    background-color: rgb(58, 58, 58);
-  }
-  
-  .tile:before {
-    background-color: rgb(58, 58, 58);
-    content: "";
-    inset: 0px;
-    position: absolute;
-  }
-  
+    ); */
+  background: linear-gradient(135deg, #26D19C, #A309FF, #6345E5);
+  background-size: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0px;
+}
+
+body.toggled {
+  animation: none;
+}
+
+body.toggled #title {
+  opacity: 1;
+}
+
+.centered {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#tiles {
+  height: calc(100vh - 1px);
+  width: calc(100vw - 1px);
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.tile {
+  cursor: pointer;
+  position: relative;
+}
+
+.tile:hover:before {
+  background-color: rgb(58, 58, 58);
+}
+
+.tile:before {
+  background-color: rgb(58, 58, 58);
+  content: "";
+  inset: 0px;
+  position: absolute;
+}
+
+#title {
+  opacity: 0;
+  color: white;
+  font-family: sans-serif;
+  font-size: 6vw;
+  margin: 0px;
+  pointer-events: none;
+  transition: opacity 420ms ease-out;
+  width: 50vw;
+  z-index: 3;
+}
+
+#title > .fancy {
+  color: white;
+  font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+  font-size: 1em;
+  line-height: 0.9em;
+}
+
+@media only screen and (max-width: 600px) {
   #title {
-    opacity: 0;
-    color: white;
-    font-family: sans-serif;
-    font-size: 6vw;
-    margin: 0px;
-    pointer-events: none;
-    transition: opacity 420ms ease-out;
-    width: 50vw;
-    z-index: 3;
+    font-size: 8vw;
+    width: 90vw;
   }
-  
+
   #title > .fancy {
-    color: white;
-    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
-    font-size: 1em;
-    line-height: 0.9em;
+    font-size: 1.6em;
+    line-height: 1.2em;
   }
-  
-  @media only screen and (max-width: 600px) {
-    #title {
-      font-size: 8vw;
-      width: 90vw;
-    }
-    
-    #title > .fancy {
-      font-size: 1.6em;
-      line-height: 1.2em;
-    }
-  }
+}

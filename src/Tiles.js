@@ -4,57 +4,37 @@ import Name from "./Name";
 import "./Tiles.css";
 
 const names = [
-  "Vivian",
-  "Martin",
-  "Sethu",
-  "Rukshan",
-  "Valencia",
+  "Confluence",
+  "IT Support",
+  "Level 6 Toilet",
+  "Galaxy Meeting Room",
+  "Vionna",
+  "Resi",
+  "Parikshit",
+  "Cendex",
+  "Jira",
+  "Figma",
+  "Al Capone",
   "Shank",
   "Cheryl",
   "Jiayi",
   "Ruhaim",
   "Shixiang",
-  "Vionna",
-  "Parikshit",
-  "Confluence",
-  "IT Support",
-  "Level 6 Toilet",
-  "Galaxy Meeting Room",
-  "Cendex",
-  "Jira",
-  "Figma",
-  "Al Capone",
   "Aleph",
   "Slack Channels",
   "Bamboo HR",
   "OKR PROFIT",
+  "Vivian",
+  "Martin",
+  "Sethu",
+  "Rukshan",
+  "Valencia",
   "Bus 147",
   "Bukit Merah",
   "Squeaky Chairs",
-  "Walk Around The Block",
+  "Walking Around The Block",
 ];
 
-function shuffle(array) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-
-  return array;
-}
-
-shuffle(names);
 
 const Tiles = () => {
   let columns = 0,
